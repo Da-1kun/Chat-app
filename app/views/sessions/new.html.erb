@@ -1,0 +1,13 @@
+<%= form_for :session, url: login_path, html: {class: "login-box"} do |f| %>
+    <h1>Login</h1>
+    <div class="textbox">
+      <i class="envelope icon"></i>
+      <%= f.email_field :email, placeholder: "E-mail address" %>
+    </div>
+    <div class="textbox">
+      <i class="lock icon"></i>
+      <%= f.password_field :password, placeholder: "Password" %>
+    </div>
+  
+    <%= f.submit "Log in", class: "btn" %>
+<% end %>
