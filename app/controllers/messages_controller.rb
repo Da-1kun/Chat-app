@@ -2,9 +2,8 @@ class MessagesController < ApplicationController
   def create
     message = Message.new(message_params)
     message.user = current_user
-    # byebug
     if message.save!
-      ActionCable.server.broadcast 'messages',
+      ActionCable.server.broadcast "chatroom_#{message.chatroom_id}",
         message: message
       head :ok
     else 

@@ -3,38 +3,40 @@
     <input type="text" placeholder="Search">
   </div>
   <div class="conversation-list">
-    <% @chatrooms.each do |chatroom| %>
-    <div class="conversation">
-      <%= image_tag 'default-profile-photo.png' %>
-      <div class="title-text">
-        <%= chatroom.user.username %>
-      </div>
-      <% if any_message?(chatroom.chatroom_id) %>
-        <div class="created-date">
-          <%= get_created_at(chatroom.chatroom_id) %>
+    <% @chatrooms.each.with_index(1) do |chatroom, idx| %>
+      <a class="conversation item <% if idx == 1 %>active<% end %>" 
+        data-tab="chatroom_<%= chatroom.chatroom_id %>">
+        <%= image_tag 'default-profile-photo.png' %>
+        <div class="title-text">
+          <%= chatroom.user.username %>
+          <input type="hidden" id="chatroom_idx_<%= idx %>" value="<%= chatroom.chatroom_id %>">
         </div>
-        <div class="conversation-message">
-          <%= truncate(get_content(chatroom.chatroom_id), length: 30) %>
-        </div>
-      <% end %>
-    </div>
+        <% if any_message?(chatroom.chatroom_id) %>
+          <div class="created-date">
+            <%= message_created_at(chatroom.chatroom_id) %>
+          </div>
+          <div class="conversation-message">
+            <%= truncate(content(chatroom.chatroom_id), length: 30) %>
+          </div>
+        <% end %>
+      </a>
     <% end %>
   </div>
   <div class="new-message-container">
     <div class="addModalBtn">+</div>
   </div>
   <div class="chat-title">
-    <span>Da1kun</span>
+    <span><%= @chatrooms.first.user.username %></span>
     <%= image_tag 'trash-logo.svg'%>
   </div>
   <div class="chat-message-list">
-    <%= render 'chatrooms/message' %>
+    <%= render 'chatrooms/message', chatrooms: @chatrooms %>
   </div>
   <%= form_for @message, url: messages_path, remote: true do |f| %>
     <%= image_tag 'attachment-logo.svg'%>
-    <%= f.text_area :content, placeholder: "send a message", rows: "1", data: { text_area: @message} %>
-    <%= f.hidden_field :chatroom_id, value: "5" %>
-    <%= f.submit style: "display: none", data: {send: @message} %>
+    <%= f.text_area :content, placeholder: "send a message", rows: "1" %>
+    <%= f.hidden_field :chatroom_id, value: @chatrooms.first.chatroom_id %>
+    <%= f.submit style: "display: none" %>
   </div>
   <% end %>
 </div>

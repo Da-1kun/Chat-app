@@ -19,10 +19,12 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', () => {
+  // add conversation modal
   $('.addModalBtn').on('click', () => {
     $('.modal').modal('show');
   });
 
+  // textarea ajustment
   $('#new_message textarea').on('keyup', () =>{
     const target = $("#new_message textarea");
     const maxLineHeight = 10;
@@ -38,6 +40,7 @@ $(document).on('turbolinks:load', () => {
   }
   });
 
+  // sending message action
   $('#new_message').on('keydown', e => {
     if(e.keyCode == 13) {
       $('input[type="submit"]').click();
@@ -45,4 +48,20 @@ $(document).on('turbolinks:load', () => {
       return false;
     }
   })
+
+  // activate conversation-list
+  const activeTag = $('.conversation.item.active').data('tab');
+  $('[data-tab="' + activeTag + '"]').addClass('active');
+  $('.conversation-list .item').tab({
+      context: $('.chat-message-list')
+  });
+
+  // set chatroom info(username, id)
+  $('a.conversation.item').on('click', () => {
+    const name = $('.conversation.item.active').children('.title-text').text();
+    const id = $('.conversation.item.active').find('input[type="hidden"]').val();
+    $('.chat-title span').text(name);
+    $('#message_chatroom_id').val(id);
+  });
+
 });
