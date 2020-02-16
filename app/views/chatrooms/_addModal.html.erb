@@ -1,6 +1,6 @@
 <div class="ui modal">
   <div class="header">
-    Find User
+    Find Users
   </div>
   <div class="content user-list">
     <% if @users.count != 0 %>
@@ -10,7 +10,9 @@
             <div class="right floated content">
               <%= form_for @chatroom, url: chatroom_path do |f| %>
                 <%= f.hidden_field :user_id, value: user.id %>
-                <%= f.submit "Add", class: "ui button" %>
+                <%= button_tag type: "submit", class: "ui labeled icon button" do %>
+                    <i class="comment outline icon"></i>Add
+                <% end %>
               <% end %>
             </div>
             <%= image_tag 'default-profile-photo.png', class: "ui avatar image" %>

@@ -24,7 +24,7 @@ body {
 .chat-container {
   display: grid;
   grid:
-    'search-container chat-title' 71px
+    'user-info-container chat-title' 71px
     'conversation-list chat-message-list' 1fr
     'conversation-list new_message' auto
     'new-message-container new_message' 78px
@@ -38,37 +38,34 @@ body {
   border-radius: 10px;
 }
 
-.search-container,
+.user-info-container,
 .conversation-list,
 .new-message-container {
-  background: #0048AA;
+  background: #236894;
 }
 
-.search-container {
+.user-info-container {
   display: grid;
+  justify-items: center;
   align-items: center;
-  grid-area: search-container;
+  grid-area: user-info-container;
+  grid-template-columns: 1fr 30px 30px;
+  grid-gap: 10px;
   padding: 0 20px;
   border-radius: 10px 0 0 0;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
   z-index: 1;
-  input {
+  .ui.basic.image.label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+    background: transparent;
+    border: none;
     color: #eee;
-    outline: none;
-    font-weight: bold;
-    border-radius: 2px;
-    height: 30px;
-    border: 0;
-    padding-left: 48px;
-    padding-right: 20px;
-    font-size: 0.875rem;
-    background: image-url('search.svg') no-repeat rgba(255, 255, 255, 0.3);
-    background-position: 15px center;
-    background-size: 20px 20px;
-    &::placeholder {
-      color: #ddd;
-      font-weight: bold;
-    }
+    font-size: 1.1rem;
+  }
+  i {
+    color: white;
   }
 }
 
@@ -83,11 +80,11 @@ body {
   grid-gap: 10px;
   color: #ddd;
   font-size: 1rem;
-  border-bottom: 1px solid #002C88;
+  border-bottom: 1px solid #4fafd8;
   padding: 20px 20px 20px 15px;
   &.active,
   &:hover {
-    background: #002C88;
+    background: #4fafd8;
   }
   &:hover {
     cursor: pointer;
@@ -125,12 +122,20 @@ body {
 
 .new-message-container {
   display: grid;
-  grid: 40px / 40px;
+  grid: 40px / 40px 200px;
+  grid-gap: 15px;
   align-content: center;
   grid-area: new-message-container;
   border-top: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 0 0 0 10px;
   padding: 0 15px;
+  .new-message {
+    align-content: center;
+    align-items: center;
+    display: grid;
+    font-size: 1.3rem;
+    color: #ddd;
+  }
 }
 
 .addModalBtn {
@@ -138,7 +143,7 @@ body {
   place-content: center center;
   background: #eee;
   border-radius: 100%;
-  color: #002C88;
+  color: #4fafd8;
   text-decoration: none;
   font-size: 3rem;
   cursor: pointer;
@@ -155,7 +160,7 @@ body {
   align-content: center;
   align-items: center;
   grid-area: chat-title;
-  color: #0048AA;
+  color: #236894;
   font-weight: bold;
   font-size: 1.4rem;
   border-radius: 0 10px 0 0;
@@ -182,11 +187,6 @@ body {
   display: grid;
   grid-template-columns: 70%;
   margin-bottom: 20px;
-  img {
-    border-radius: 100%;
-    grid-row: span 2;
-    width: 50px;
-  }
 }
 
 .message-content {
@@ -199,21 +199,27 @@ body {
     justify-items: end;
   }
   .message-text {
-    background: #0048AA;
+    background: #236894;
     color: #eee;
-    border: 1px solid #0048AA;
+    border: 1px solid #236894;
     border-radius: 14px 14px 0 14px;
   }
 }
 
 .other-message {
   justify-items: start;
+  img {
+    border-radius: 100%;
+    grid-row: span 2;
+    width: 45px;
+  }
   .message-content {
+    justify-items: start;
     grid-template-columns: 48px 1fr;
-    grid-column-gap: 15px;
+    grid-column-gap: 10px;
   }
   .message-text {
-    background: #eee;
+    background: #d3e1ea;
     color: #111;
     border: 1px solid #ddd;
     border-radius: 14px 14px 14px 0;

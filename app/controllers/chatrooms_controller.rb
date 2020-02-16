@@ -1,10 +1,8 @@
 class ChatroomsController < ApplicationController
   def show
-    @chatrooms = Member.chatting_members(current_user.id)
+    @chatrooms = Member.chatting_members(current_user.id).where.not(user_id: current_user.id)
     @users = User.where.not(
-      id: [ current_user.id,
-            Member.chatting_members(current_user.id).select("user_id")
-          ]
+      id: [ Member.chatting_members(current_user.id).select("user_id")]
       )
     @message = Message.new
     @chatroom = Chatroom.new

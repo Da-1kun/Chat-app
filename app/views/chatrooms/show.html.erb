@@ -1,6 +1,22 @@
 <div class="chat-container">
-  <div class="search-container">
-    <input type="text" placeholder="Search">
+  <div class="user-info-container">
+    <div class="ui basic image label">
+      <%= image_tag 'default-profile-photo.png', class: "ui circular image" %>
+      <%= current_user.username %>
+    </div>
+    <%= link_to do %>
+      <span>
+        <i class="info circle large icon"
+          data-content="User Info"></i>
+      </span>
+    <% end %>
+    <%= link_to  logout_path, method: :delete do %>
+      <span>
+        <i class="sign out alternate large icon link" 
+          data-content="Log out"></i>
+      </span>
+    <% end %>
+    <input type="hidden" id="currentUserId" value="<%= current_user.id %>">
   </div>
   <div class="conversation-list">
     <% @chatrooms.each.with_index(1) do |chatroom, idx| %>
@@ -24,6 +40,7 @@
   </div>
   <div class="new-message-container">
     <div class="addModalBtn">+</div>
+    <div class="new-message">New Conversation</div>
   </div>
   <div class="chat-title">
     <span><%= @chatrooms.first.user.username %></span>
@@ -36,7 +53,7 @@
     <%= image_tag 'attachment-logo.svg'%>
     <%= f.text_area :content, placeholder: "send a message", rows: "1" %>
     <%= f.hidden_field :chatroom_id, value: @chatrooms.first.chatroom_id %>
-    <%= f.submit style: "display: none" %>
+    <%= f.submit id: "submitMessage", style: "display: none" %>
   </div>
   <% end %>
 </div>

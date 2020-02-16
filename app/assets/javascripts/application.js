@@ -43,7 +43,7 @@ $(document).on('turbolinks:load', () => {
   // sending message action
   $('#new_message').on('keydown', e => {
     if(e.keyCode == 13) {
-      $('input[type="submit"]').click();
+      $('#submitMessage').click();
       e.target.value = "";
       return false;
     }
@@ -63,5 +63,9 @@ $(document).on('turbolinks:load', () => {
     $('.chat-title span').text(name);
     $('#message_chatroom_id').val(id);
   });
+
+  // activate logout popup
+  $('.sign.out.alternate.icon').popup();
+  $('.info.icon').popup();
 
 });
