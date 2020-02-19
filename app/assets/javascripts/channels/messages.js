@@ -35,8 +35,19 @@ $(document).on('turbolinks:load', () => {
               </div>
               `;
           }
+          // display message in the chat-message-list
           $('.chat-message-list [data-tab="chatroom_' + msg.chatroom_id + '"]').append(messageHTML);
+          $('.chat-message-list').scrollTop($('.chat-message-list')[0].scrollHeight)
+
+          // display message in the conversation-list
+          const conversation = $('.conversation-list [data-tab="chatroom_' + msg.chatroom_id + '"]');
+          conversation.prependTo('.conversation-list');
+          conversation.find('.created-date').text(data['created_at']);
+          conversation.find('.conversation-message').text(msg.content);
+          if (!conversation.hasClass('active')) {
+            conversation.find('div').addClass('notice-color');
+          }
       }
     });
-  }
+  };
 });

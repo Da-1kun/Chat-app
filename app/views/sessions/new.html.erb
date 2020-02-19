@@ -7,6 +7,10 @@
     <div class="textbox">
       <i class="lock icon"></i>
       <%= f.password_field :password, placeholder: "Password" %>
+      <span class='eye-area'>
+        <i id='eyeSlash' class="eye slash icon"></i>
+        <i id='eye' class="eye icon"></i>
+      </span>
     </div>
   
     <%= f.submit "Log in", class: "btn" %>

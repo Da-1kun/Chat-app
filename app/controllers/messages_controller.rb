@@ -17,7 +17,6 @@ class MessagesController < ApplicationController
   end
 
   def format_time(message)
-    time = message.created_at.strftime('%b %d　%R')
-    message.created_at = time
+    message.created_at.strftime('%b %d　%R')
   end
 end

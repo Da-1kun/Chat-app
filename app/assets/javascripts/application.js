@@ -19,6 +19,19 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', () => {
+  // visualize password
+  $('#eyeSlash').on('click', () => {
+    $('#session_password').get(0).type = 'text';
+    $('#eyeSlash').css('display', 'none');
+    $('#eye').css('display', 'block');
+  });
+  $('#eye').on('click', () => {
+    $('#session_password').get(0).type = 'password';
+    $('#eyeSlash').css('display', 'block');
+    $('#eye').css('display', 'none');
+  });
+
+
   // add conversation modal
   $('.addModalBtn').on('click', () => {
     $('.modal').modal('show');
@@ -68,4 +81,9 @@ $(document).on('turbolinks:load', () => {
   $('.sign.out.alternate.icon').popup();
   $('.info.icon').popup();
 
+  // remove notice-color
+  $('.conversation-list a').on('click', e => {
+    const notice = $(e.target).closest('a');
+    notice.find('div').removeClass('notice-color');
+  });
 });
