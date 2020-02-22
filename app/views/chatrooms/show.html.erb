@@ -21,18 +21,18 @@
   <div class="conversation-list">
     <% @chatrooms.each.with_index(1) do |chatroom, idx| %>
       <a class="conversation item <% if idx == 1 %>active<% end %>" 
-        data-tab="chatroom_<%= chatroom.chatroom_id %>">
+        data-tab="chatroom_<%= chatroom.id %>">
         <%= image_tag 'default-profile-photo.png' %>
         <div class="title-text">
           <%= chatroom.user.username %>
-          <input type="hidden" id="chatroom_idx_<%= idx %>" value="<%= chatroom.chatroom_id %>">
+          <input type="hidden" id="chatroom_idx_<%= idx %>" value="<%= chatroom.id %>">
         </div>
-        <% if any_message?(chatroom.chatroom_id) %>
+        <% if chatroom.content.present? %>
           <div class="created-date">
-            <%= message_created_at(chatroom.chatroom_id) %>
+            <%= message_created_at(chatroom.msg_created_at) %>
           </div>
           <div class="conversation-message">
-            <%= truncate(content(chatroom.chatroom_id), length: 30) %>
+            <%= truncate(chatroom.content, length: 30) %>
           </div>
         <% end %>
       </a>
@@ -52,7 +52,7 @@
   <%= form_for @message, url: messages_path, remote: true do |f| %>
     <i class="images outline large icon"></i>
     <%= f.text_area :content, placeholder: "send a message", rows: "1" %>
-    <%= f.hidden_field :chatroom_id, value: @chatrooms.first.chatroom_id %>
+    <%= f.hidden_field :chatroom_id, value: @chatrooms.first.id %>
     <%= f.submit id: "submitMessage", style: "display: none" %>
   </div>
   <% end %>

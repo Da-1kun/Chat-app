@@ -1,6 +1,6 @@
 <% @chatrooms.each do |chatroom| %>
-  <div class="ui tab" data-tab="chatroom_<%= chatroom.chatroom_id %>">
-    <% new_messages(chatroom.chatroom_id).each do |message| %>
+  <div class="ui tab" data-tab="chatroom_<%= chatroom.id %>">
+    <% new_messages(chatroom.id).each do |message| %>
       <% if message.user_id == current_user.id %>
         <div class="message-row you-message">
           <div class="message-content">
