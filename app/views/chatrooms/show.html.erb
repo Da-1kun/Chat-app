@@ -39,7 +39,9 @@
     <% end %>
   </div>
   <div class="new-message-container">
-    <div class="addModalBtn"><i class="plus circle icon"></i></div>
+    <%= link_to users_path, class: "addModalBtn", remote: true do %>
+      <i class="plus circle icon"></i>
+    <% end %>
     <div class="new-message">New Conversation</div>
   </div>
   <div class="chat-title">
@@ -58,4 +60,5 @@
   <% end %>
 </div>
 
-<%= render 'chatrooms/addModal' %>
+<div class="ui modal" id="addModal">
+</div>

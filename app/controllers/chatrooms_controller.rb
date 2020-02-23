@@ -3,11 +3,7 @@ class ChatroomsController < ApplicationController
     @chatrooms = Member.conversations.where(
       chatroom_id: Member.where(user_id: current_user.id).select("chatroom_id")
     ).where.not(user_id: current_user.id).sorted
-    @users = User.where.not(
-      id: [ Member.chatting_members(current_user.id).select("user_id")]
-      )
     @message = Message.new
-    @chatroom = Chatroom.new
   end
 
   def create

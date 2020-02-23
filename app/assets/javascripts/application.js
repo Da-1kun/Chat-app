@@ -31,9 +31,8 @@ $(document).on('turbolinks:load', () => {
     $('#eye').css('display', 'none');
   });
 
-
-  // add conversation modal
-  $('.addModalBtn').on('click', () => {
+  // display add modal
+  $('.addModalBtn').on('ajax:success', () => {
     $('.modal').modal('show');
   });
 
