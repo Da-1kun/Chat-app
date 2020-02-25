@@ -5,4 +5,8 @@ class UsersController < ApplicationController
       )
     @chatroom = Chatroom.new
   end
+
+  def edit
+    
+  end
 end

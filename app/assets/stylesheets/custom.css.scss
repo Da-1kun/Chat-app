@@ -75,6 +75,9 @@ body {
   i {
     color: white;
   }
+  a:nth-child(2) {
+    cursor: pointer;
+  }
 }
 
 .conversation-list {
@@ -334,4 +337,59 @@ body {
 // add modal
 .ui.modal .content.user-list {
   font-size: 1.5em;
+}
+
+// userInfoModal
+#userInfoModal {
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    .content {
+      font-size: 1.6rem;
+    }
+    #editProfileBtn {
+      background: #4fafd8;
+    }
+  }
+  .image.content {
+    align-items: center;
+    .ui.image {
+      display: grid;
+      grid-template-rows: 15rem 1fr;
+      text-align: center;
+      .ui.circular.profile.image {
+        width: 15rem;
+        height: 15rem;
+      }
+      .change-photo-link {
+        font-size: 1.1rem;
+        display: none;
+        margin-top: 1rem;
+      }
+      a:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+  .description {
+    flex: 1;
+    .hidden-items {
+      display: none;
+    }
+  }
+  .ui.form {
+    input {
+      opacity: 1;
+    }
+    .ui.button {
+      background: #4fafd8;
+      color: #FFFFFF;
+      display: none;
+    }
+  }
+  .ui.red.button {
+    display: none;
+  }
 }

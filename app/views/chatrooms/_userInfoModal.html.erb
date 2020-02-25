@@ -1,0 +1,43 @@
+<div class="ui small modal" id="userInfoModal">
+  <div class="header">
+    <div class="content">Your Profile</div>
+    <div class="ui positive right labeled icon button" id="editProfileBtn">
+      Edit
+      <i class="edit icon"></i>
+    </div>
+    <%= link_to do %>
+      <div class="ui red right labeled icon button hidden-items">
+        Cancel
+        <i class="window close icon"></i>
+      </div>
+    <% end %>
+  </div>
+  <div class="image content">
+    <div class="ui image">
+      <%= image_tag 'coffee_shop.jpg', class: "ui circular profile image" %>
+      <a class="change-photo-link hidden-items">Change Profile Photo</a>
+    </div>
+    <div class="description">
+      <%= form_for user, url: edit_user_path(user), html: { class: "ui profile form"} do |f| %>
+        <div class="field">
+          <label>Name</label>
+          <%= f.text_field :username, placeholder: "Name", disabled: true %>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <%= f.email_field :email, placeholder: "E-mail address", disabled: true %>
+        </div>
+        <div class="field hidden-items">
+          <label>Passwod</label>
+          <%= f.password_field :password, disabled: true%>
+        </div>
+        <%= f.submit "Update", class: "ui button hidden-items", id: "updateBtn"%>
+      <% end %>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      Close
+    </div>
+  </div>
+</div>

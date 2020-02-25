@@ -4,12 +4,12 @@
       <%= image_tag 'default-profile-photo.png', class: "ui circular image" %>
       <%= current_user.username %>
     </div>
-    <%= link_to do %>
+    <a>
       <span>
         <i class="info circle large icon"
           data-content="User Info"></i>
       </span>
-    <% end %>
+    </a>
     <%= link_to  logout_path, method: :delete do %>
       <span>
         <i class="sign out alternate large icon link" 
@@ -60,5 +60,5 @@
   <% end %>
 </div>
 
-<div class="ui modal" id="addModal">
-</div>
+<%= render 'userInfoModal', user: @user %>
+<div class="ui modal" id="addModal"></div>

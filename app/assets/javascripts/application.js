@@ -31,9 +31,14 @@ $(document).on('turbolinks:load', () => {
     $('#eye').css('display', 'none');
   });
 
+  // display userInfoModal
+  $('.info.circle.icon').on('click', () => {
+    $('#userInfoModal').modal({closable : false}).modal('show');
+  });
+
   // display add modal
   $('.addModalBtn').on('ajax:success', () => {
-    $('.modal').modal('show');
+    $('#addModal').modal('show');
   });
 
   // textarea ajustment
@@ -84,5 +89,12 @@ $(document).on('turbolinks:load', () => {
   $('.conversation-list a').on('click', e => {
     const notice = $(e.target).closest('a');
     notice.find('div').removeClass('notice-color');
+  });
+
+  $('#editProfileBtn').on('click', () => {
+    $('#editProfileBtn').hide();
+    $('#userInfoModal .actions').hide();
+    $('#userInfoModal').find('.hidden-items').show();
+    $('.ui.profile.form').find('input').prop('disabled', false);
   });
 });
