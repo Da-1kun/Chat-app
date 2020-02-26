@@ -1,4 +1,4 @@
-@import "semantic-ui";
+@import 'semantic-ui';
 
 * {
   margin: 0;
@@ -42,7 +42,7 @@ body {
   max-height: 800px;
   width: 100%;
   height: 95vh;
-  background: #FFF;
+  background: #fff;
   border-radius: 10px;
 }
 
@@ -101,7 +101,7 @@ body {
     cursor: pointer;
   }
   img {
-    grid-row: span 2; 
+    grid-row: span 2;
     height: 40px;
     width: 40px;
     border-radius: 100%;
@@ -158,7 +158,7 @@ body {
       height: 19px;
     }
   }
-    
+
   .new-message {
     align-content: center;
     align-items: center;
@@ -332,7 +332,7 @@ body {
   font-size: 18px;
   cursor: pointer;
   margin: 12px 0;
-} 
+}
 
 // add modal
 .ui.modal .content.user-list {
@@ -353,6 +353,8 @@ body {
     }
   }
   .image.content {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
     align-items: center;
     .ui.image {
       display: grid;
@@ -366,16 +368,20 @@ body {
         font-size: 1.1rem;
         display: none;
         margin-top: 1rem;
-      }
-      a:hover {
-        text-decoration: underline;
-        cursor: pointer;
+        color: #4fafd8;
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
       }
     }
   }
+  #photoLink {
+    display: none;
+  }
   .description {
     flex: 1;
-    .hidden-items {
+    .hidden-item {
       display: none;
     }
   }
@@ -385,7 +391,7 @@ body {
     }
     .ui.button {
       background: #4fafd8;
-      color: #FFFFFF;
+      color: #ffffff;
       display: none;
     }
   }

@@ -6,7 +6,7 @@
       <i class="edit icon"></i>
     </div>
     <%= link_to do %>
-      <div class="ui red right labeled icon button hidden-items">
+      <div class="ui red right labeled icon button hidden-item">
         Cancel
         <i class="window close icon"></i>
       </div>
@@ -14,8 +14,9 @@
   </div>
   <div class="image content">
     <div class="ui image">
-      <%= image_tag 'coffee_shop.jpg', class: "ui circular profile image" %>
-      <a class="change-photo-link hidden-items">Change Profile Photo</a>
+      <%= image_tag 'coffee_shop.jpg', class: "ui circular profile image", id: "photoArea" %>
+      <label class="change-photo-link hidden-item">Change Profile Photo
+        <input type="file" id="photoLink"s></label>
     </div>
     <div class="description">
       <%= form_for user, url: edit_user_path(user), html: { class: "ui profile form"} do |f| %>
@@ -27,11 +28,15 @@
           <label>Email</label>
           <%= f.email_field :email, placeholder: "E-mail address", disabled: true %>
         </div>
-        <div class="field hidden-items">
+        <div class="field hidden-item">
           <label>Passwod</label>
-          <%= f.password_field :password, disabled: true%>
+          <div class="ui icon input">
+            <%= f.password_field :password, class: "password", disabled: true %>
+              <i id='eyeSlash' class="eye slash link icon"></i>
+              <i id='eye' class="eye link icon"></i>
+          </div>
         </div>
-        <%= f.submit "Update", class: "ui button hidden-items", id: "updateBtn"%>
+        <%= f.submit "Update", class: "ui button hidden-item", id: "updateBtn"%>
       <% end %>
     </div>
   </div>

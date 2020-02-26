@@ -21,19 +21,21 @@
 $(document).on('turbolinks:load', () => {
   // visualize password
   $('#eyeSlash').on('click', () => {
-    $('#session_password').get(0).type = 'text';
+    $('input[type="password"]').get(0).type = 'text';
     $('#eyeSlash').css('display', 'none');
     $('#eye').css('display', 'block');
   });
   $('#eye').on('click', () => {
-    $('#session_password').get(0).type = 'password';
+    $('.password').get(0).type = 'password';
     $('#eyeSlash').css('display', 'block');
     $('#eye').css('display', 'none');
   });
 
   // display userInfoModal
   $('.info.circle.icon').on('click', () => {
-    $('#userInfoModal').modal({closable : false}).modal('show');
+    $('#userInfoModal')
+      .modal({ closable: false })
+      .modal('show');
   });
 
   // display add modal
@@ -42,41 +44,48 @@ $(document).on('turbolinks:load', () => {
   });
 
   // textarea ajustment
-  $('#new_message textarea').on('keyup', () =>{
-    const target = $("#new_message textarea");
+  $('#new_message textarea').on('keyup', () => {
+    const target = $('#new_message textarea');
     const maxLineHeight = 10;
     const rawTarget = target.get(0);
-    let lineHeight = Number(target.attr("rows"));
-    while (rawTarget.scrollHeight > rawTarget.offsetHeight && lineHeight < maxLineHeight){
-        lineHeight++;
-        target.attr("rows", lineHeight);
+    let lineHeight = Number(target.attr('rows'));
+    while (
+      rawTarget.scrollHeight > rawTarget.offsetHeight &&
+      lineHeight < maxLineHeight
+    ) {
+      lineHeight++;
+      target.attr('rows', lineHeight);
     }
-    while (rawTarget.scrollHeight < rawTarget.offsetHeight && lineHeight > 1){
+    while (rawTarget.scrollHeight < rawTarget.offsetHeight && lineHeight > 1) {
       lineHeight--;
-      target.attr("rows", lineHeight);
-  }
+      target.attr('rows', lineHeight);
+    }
   });
 
   // sending message action
   $('#new_message').on('keydown', e => {
-    if(e.keyCode == 13) {
+    if (e.keyCode == 13) {
       $('#submitMessage').click();
-      e.target.value = "";
+      e.target.value = '';
       return false;
     }
-  })
+  });
 
   // activate conversation-list
   const activeTag = $('.conversation.item.active').data('tab');
   $('[data-tab="' + activeTag + '"]').addClass('active');
   $('.conversation-list .item').tab({
-      context: $('.chat-message-list')
+    context: $('.chat-message-list')
   });
 
   // set chatroom info(username, id)
   $('a.conversation.item').on('click', () => {
-    const name = $('.conversation.item.active').children('.title-text').text();
-    const id = $('.conversation.item.active').find('input[type="hidden"]').val();
+    const name = $('.conversation.item.active')
+      .children('.title-text')
+      .text();
+    const id = $('.conversation.item.active')
+      .find('input[type="hidden"]')
+      .val();
     $('.chat-title span').text(name);
     $('#message_chatroom_id').val(id);
   });
@@ -91,10 +100,15 @@ $(document).on('turbolinks:load', () => {
     notice.find('div').removeClass('notice-color');
   });
 
+  // click edit profile button event
   $('#editProfileBtn').on('click', () => {
     $('#editProfileBtn').hide();
     $('#userInfoModal .actions').hide();
-    $('#userInfoModal').find('.hidden-items').show();
-    $('.ui.profile.form').find('input').prop('disabled', false);
+    $('#userInfoModal')
+      .find('.hidden-item')
+      .show();
+    $('.ui.profile.form')
+      .find('input')
+      .prop('disabled', false);
   });
 });
