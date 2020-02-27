@@ -70,7 +70,12 @@ body {
     background: transparent;
     border: none;
     color: #eee;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    img {
+      width: 37px !important;
+      height: 37px !important;
+      border-radius: 100%;
+    }
   }
   i {
     color: white;
@@ -332,6 +337,15 @@ body {
   font-size: 18px;
   cursor: pointer;
   margin: 12px 0;
+}
+
+.buttom-text {
+  margin-top: 1.1rem;
+  font-size: 1.1rem;
+  text-align: center;
+  a {
+    color: #4caf50;
+  }
 }
 
 // add modal

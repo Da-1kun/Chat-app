@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  mount_uploader :photo, PhotoUploader
+
   has_secure_password
   has_many :messages
   has_many :chatrooms

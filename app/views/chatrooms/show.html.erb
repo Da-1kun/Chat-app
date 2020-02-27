@@ -1,7 +1,11 @@
 <div class="chat-container">
   <div class="user-info-container">
     <div class="ui basic image label">
-      <%= image_tag 'default-profile-photo.png', class: "ui circular image" %>
+      <% if current_user.photo? %>
+        <%= image_tag current_user.photo.url class: "ui image" %>
+      <% else %>
+        <%= image_tag 'default-profile-photo.png', class: "ui circular image" %>
+      <% end %>
       <%= current_user.username %>
     </div>
     <a>
@@ -22,7 +26,11 @@
     <% @chatrooms.each.with_index(1) do |chatroom, idx| %>
       <a class="conversation item <% if idx == 1 %>active<% end %>" 
         data-tab="chatroom_<%= chatroom.id %>">
-        <%= image_tag 'default-profile-photo.png' %>
+        <% if chatroom.user.photo? %>
+          <%= image_tag chatroom.user.photo.url %>
+        <% else %>
+          <%= image_tag 'default-profile-photo.png' %>
+        <% end %>
         <div class="title-text">
           <%= chatroom.user.username %>
           <input type="hidden" id="chatroom_idx_<%= idx %>" value="<%= chatroom.id %>">
@@ -45,7 +53,11 @@
     <div class="new-message">New Conversation</div>
   </div>
   <div class="chat-title">
-    <span><%= @chatrooms.first.user.username %></span>
+    <span>
+      <% if @chatrooms.present? %>
+        <%= @chatrooms.first.user.username %>
+      <% end %>
+    </span>
     <i class="trash alternate large icon"></i>
   </div>
   <div class="chat-message-list">
@@ -54,7 +66,9 @@
   <%= form_for @message, url: messages_path, remote: true do |f| %>
     <i class="images outline large icon"></i>
     <%= f.text_area :content, placeholder: "send a message", rows: "1" %>
-    <%= f.hidden_field :chatroom_id, value: @chatrooms.first.id %>
+    <% if @chatrooms.present? %>
+      <%= f.hidden_field :chatroom_id, value: @chatrooms.first.id %>
+    <% end %>
     <%= f.submit id: "submitMessage", style: "display: none" %>
   </div>
   <% end %>

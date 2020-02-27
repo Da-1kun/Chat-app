@@ -1,5 +1,9 @@
-<%= form_for :session, url: login_path, html: {class: "login-box"} do |f| %>
-    <h1>Login</h1>
+<%= form_for @user, html: {class: "login-box"} do |f| %>
+    <h1>Sign Up</h1>
+    <div class="textbox">
+      <i class="user icon"></i>
+      <%= f.text_field :username, placeholder: "Username" %>
+    </div>
     <div class="textbox">
       <i class="envelope icon"></i>
       <%= f.email_field :email, placeholder: "E-mail address" %>
@@ -13,8 +17,5 @@
       </span>
     </div>
   
-    <%= f.submit "Log in", class: "btn" %>
-    <div class="buttom-text">
-      New to us? <%= link_to 'Sign up', signup_path %>
-    </div>
+    <%= f.submit "Sign up", class: "btn" %>
 <% end %>

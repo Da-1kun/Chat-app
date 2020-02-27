@@ -15,7 +15,11 @@
       <% else %>
         <div class="message-row other-message">
           <div class="message-content">
-            <%= image_tag 'default-profile-photo.png'%>
+            <% if message.user.photo? %>
+              <%= image_tag message.user.photo.url, size: '45x45'%>
+            <% else %>
+              <%= image_tag 'default-profile-photo.png'%>
+            <% end %>
             <div class="message-text">
               <%= message.content %>
             </div>

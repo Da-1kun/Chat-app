@@ -14,7 +14,11 @@
               <% end %>
             <% end %>
           </div>
-          <%= image_tag 'default-profile-photo.png', class: "ui avatar image" %>
+          <% if user.photo? %>
+            <%= image_tag user.photo.url, class: "ui avatar image" %>
+          <% else %>
+            <%= image_tag 'default-profile-photo.png', class: "ui avatar image" %>
+          <% end %>
           <div class="content">
             <%= user.username%>
           </div>
