@@ -1,4 +1,6 @@
 class Message < ApplicationRecord
+  mount_uploader :image, ImageUploader
+  
   belongs_to :chatroom
   belongs_to :user
 

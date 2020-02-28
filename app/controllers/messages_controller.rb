@@ -8,7 +8,8 @@ class MessagesController < ApplicationController
     if message.save!
       chatroom.update(last_message_id: message.id)
       ActionCable.server.broadcast "chatroom_#{message.chatroom_id}",
-        message: message, created_at: format_time(message)
+        message: message, created_at: format_time(message),
+        sender: current_user.username
       head :ok
     else 
       redirect_to chatroom_path
@@ -17,7 +18,7 @@ class MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:content, :chatroom_id)
+    params.require(:message).permit(:content, :chatroom_id, :image)
   end
 
   def format_time(message)

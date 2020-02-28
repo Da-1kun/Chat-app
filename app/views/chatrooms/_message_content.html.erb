@@ -1,0 +1,9 @@
+<% if message.image? %>
+  <div class="message-image">
+    <%= image_tag message.image.url %>
+  </div>
+<% else %>
+  <div class="message-text">
+    <%= message.content %>
+  </div>
+<% end %>

@@ -214,32 +214,46 @@ body {
   justify-content: end;
   .message-content {
     justify-items: end;
-  }
-  .message-text {
-    background: #236894;
-    color: #eee;
-    border: 1px solid #236894;
-    border-radius: 14px 14px 0 14px;
+    .message-text {
+      background: #236894;
+      color: #eee;
+      border: 1px solid #236894;
+      border-radius: 14px 14px 0 14px;
+    }
+    .message-image {
+      img {
+        max-width: 17rem;
+        max-height: 15rem;
+        border-radius: 14px 14px 14px 14px;
+      }
+    }
   }
 }
 
 .other-message {
   justify-items: start;
-  img {
-    border-radius: 100%;
-    grid-row: span 2;
-    width: 45px;
-  }
   .message-content {
     justify-items: start;
     grid-template-columns: 48px 1fr;
     grid-column-gap: 10px;
-  }
-  .message-text {
-    background: #d3e1ea;
-    color: #111;
-    border: 1px solid #ddd;
-    border-radius: 14px 14px 14px 0;
+    .other-photo {
+      border-radius: 100%;
+      grid-row: span 2;
+      width: 45px;
+    }
+    .message-text {
+      background: #d3e1ea;
+      color: #111;
+      border: 1px solid #ddd;
+      border-radius: 14px 14px 14px 0;
+    }
+    .message-image {
+      img {
+        max-width: 17rem;
+        max-height: 15rem;
+        border-radius: 14px 14px 14px 14px;
+      }
+    }
   }
 }
 
@@ -276,7 +290,12 @@ body {
   }
   i {
     color: #4fafd8;
+    cursor: pointer;
   }
+}
+
+#imageIcon {
+  display: none;
 }
 
 ::-webkit-scrollbar {

@@ -35,7 +35,7 @@
           <%= chatroom.user.username %>
           <input type="hidden" id="chatroom_idx_<%= idx %>" value="<%= chatroom.id %>">
         </div>
-        <% if chatroom.content.present? %>
+        <% if chatroom.content.present? || chatroom.image.present? %>
           <div class="created-date">
             <%= message_created_at(chatroom.msg_created_at) %>
           </div>
@@ -64,7 +64,10 @@
     <%= render 'chatrooms/message', chatrooms: @chatrooms %>
   </div>
   <%= form_for @message, url: messages_path, remote: true do |f| %>
-    <i class="images outline large icon"></i>
+    <label >
+      <i class="images outline large icon"></i>
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "imageIcon" %>
+    </label>
     <%= f.text_area :content, placeholder: "send a message", rows: "1" %>
     <% if @chatrooms.present? %>
       <%= f.hidden_field :chatroom_id, value: @chatrooms.first.id %>
@@ -74,5 +77,5 @@
   <% end %>
 </div>
 
-<%= render 'userInfoModal', user: @user %>
+<%= render 'user_info_modal', user: @user %>
 <div class="ui modal" id="addModal"></div>
