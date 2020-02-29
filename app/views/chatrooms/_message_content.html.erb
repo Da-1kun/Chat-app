@@ -7,3 +7,6 @@
     <%= message.content %>
   </div>
 <% end %>
+<div class="message-time">
+  <%= format_time(message.created_at) %>
+</div>

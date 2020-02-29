@@ -43,7 +43,7 @@ $(document).on('turbolinks:load', () => {
     $('#addModal').modal('show');
   });
 
-  // textarea ajustment
+  // textarea size ajustment
   $('#new_message textarea').on('keyup', () => {
     const target = $('#new_message textarea');
     const maxLineHeight = 10;
@@ -66,16 +66,18 @@ $(document).on('turbolinks:load', () => {
   $('#new_message').on('keydown', e => {
     e.target.value = e.target.value.trim();
     if (e.keyCode == 13 && e.target.value !== '') {
-      $('#imageIcon').val('');
       $('#submitMessage').click();
       e.target.value = '';
-      return false;
     }
   });
 
   // sending image action
-  $('#imageIcon').on('change', () => {
+  $('#imageIcon').on('change', e => {
+    const txt_message = $('message_content').val();
+    $('message_content').val('');
     $('#submitMessage').click();
+    e.target.value = '';
+    $('message_content').val(txt_message);
   });
 
   // activate conversation-list
@@ -97,7 +99,7 @@ $(document).on('turbolinks:load', () => {
     $('#message_chatroom_id').val(id);
   });
 
-  // activate logout popup
+  // activate popup
   $('.sign.out.alternate.icon').popup();
   $('.info.icon').popup();
 

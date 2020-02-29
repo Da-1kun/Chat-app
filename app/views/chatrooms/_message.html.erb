@@ -5,9 +5,6 @@
         <div class="message-row you-message">
           <div class="message-content">
             <%= render 'message_content', message: message %>
-            <div class="message-time">
-              <%= message.created_at.strftime('%b %d　%R') %>
-            </div>
           </div>
         </div>
       <% else %>
@@ -19,9 +16,6 @@
               <%= image_tag 'default-profile-photo.png', class: "other-photo"%>
             <% end %>
             <%= render 'message_content', message: message %>
-            <div class="message-time">
-              <%= message.created_at.strftime('%b %d　%R') %>
-            </div>
           </div>
         </div>
       <% end %>

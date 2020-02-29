@@ -1,0 +1,22 @@
+<% chatrooms.each.with_index(1) do |chatroom, idx| %>
+  <a class="conversation item <% if idx == 1 %>active<% end %>" 
+    data-tab="chatroom_<%= chatroom.id %>">
+    <% if chatroom.user.photo? %>
+      <%= image_tag chatroom.user.photo.url %>
+    <% else %>
+      <%= image_tag 'default-profile-photo.png' %>
+    <% end %>
+    <div class="title-text">
+      <%= chatroom.user.username %>
+      <input type="hidden" id="chatroom_idx_<%= idx %>" value="<%= chatroom.id %>">
+    </div>
+    <% if chatroom.content.present? || chatroom.image.present? %>
+      <div class="created-date">
+        <%= format_time(chatroom.msg_created_at) %>
+      </div>
+      <div class="conversation-message">
+        <%= truncate(latest_message(chatroom), length: 30) %>
+      </div>
+    <% end %>
+  </a>
+<% end %>

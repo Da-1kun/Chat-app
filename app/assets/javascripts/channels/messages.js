@@ -20,7 +20,7 @@ $(document).on('turbolinks:load', () => {
                             `;
           }
           const message_time = `<div class="message-time">
-                                  ${data['created_at']}
+                                  ${data['message_time']}
                                 </div>
                                 `;
           let messageHTML = '';

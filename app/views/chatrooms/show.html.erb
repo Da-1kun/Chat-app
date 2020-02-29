@@ -7,6 +7,7 @@
         <%= image_tag 'default-profile-photo.png', class: "ui circular image" %>
       <% end %>
       <%= current_user.username %>
+      <%= hidden_field_tag :currentUserId, current_user.id %>
     </div>
     <a>
       <span>
@@ -20,31 +21,9 @@
           data-content="Log out"></i>
       </span>
     <% end %>
-    <input type="hidden" id="currentUserId" value="<%= current_user.id %>">
   </div>
   <div class="conversation-list">
-    <% @chatrooms.each.with_index(1) do |chatroom, idx| %>
-      <a class="conversation item <% if idx == 1 %>active<% end %>" 
-        data-tab="chatroom_<%= chatroom.id %>">
-        <% if chatroom.user.photo? %>
-          <%= image_tag chatroom.user.photo.url %>
-        <% else %>
-          <%= image_tag 'default-profile-photo.png' %>
-        <% end %>
-        <div class="title-text">
-          <%= chatroom.user.username %>
-          <input type="hidden" id="chatroom_idx_<%= idx %>" value="<%= chatroom.id %>">
-        </div>
-        <% if chatroom.content.present? || chatroom.image.present? %>
-          <div class="created-date">
-            <%= message_created_at(chatroom.msg_created_at) %>
-          </div>
-          <div class="conversation-message">
-            <%= truncate(chatroom.content, length: 30) %>
-          </div>
-        <% end %>
-      </a>
-    <% end %>
+    <%= render 'conversation_list', chatrooms: @chatrooms %>
   </div>
   <div class="new-message-container">
     <%= link_to users_path, class: "addModalBtn", remote: true do %>

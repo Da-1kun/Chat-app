@@ -3,6 +3,7 @@ class ChatroomsController < ApplicationController
     @chatrooms = Member.conversations.where(
       chatroom_id: Member.where(user_id: current_user.id).select("chatroom_id")
     ).where.not(user_id: current_user.id).sorted
+    # byebug
     @message = Message.new
     @user = current_user
   end

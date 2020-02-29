@@ -6,8 +6,12 @@ class Member < ApplicationRecord
     joins("LEFT JOIN chatrooms ON members.chatroom_id = chatrooms.id")
       .joins("LEFT JOIN messages ON chatrooms.last_message_id = messages.id")
       .preload(:user)
-      .select("members.user_id, chatrooms.id, messages.content,
-       messages.created_at AS msg_created_at, messages.image")
+      .select(" members.user_id,
+                chatrooms.id,
+                messages.user_id AS message_user_id,
+                messages.content,
+                messages.created_at AS msg_created_at,
+                messages.image")
   }
 
   scope :sorted, -> { order('msg_created_at DESC NULLS LAST') }
