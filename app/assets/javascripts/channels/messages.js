@@ -55,7 +55,7 @@ $(document).on('turbolinks:load', () => {
             '.conversation-list [data-tab="chatroom_' + msg.chatroom_id + '"]'
           );
           conversation.prependTo('.conversation-list');
-          conversation.find('.created-date').text(data['created_at']);
+          conversation.find('.created-date').text(data['message_time']);
           let message = '';
           if (image) {
             message = `${

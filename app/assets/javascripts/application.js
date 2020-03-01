@@ -67,7 +67,7 @@ $(document).on('turbolinks:load', () => {
 
   // sending message action
   $('#new_message').on('keydown', e => {
-    e.target.value = e.target.value.trim();
+    e.target.value = e.target.value.trimStart();
     if (e.keyCode == 13 && e.target.value !== '') {
       $('#submitMessage').click();
       e.target.value = '';
