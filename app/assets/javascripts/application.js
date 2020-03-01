@@ -38,6 +38,9 @@ $(document).on('turbolinks:load', () => {
       .modal('show');
   });
 
+  // activate dropdown
+  $('.ui.dropdown').dropdown({ showOnFocus: false });
+
   // display add modal
   $('.addModalBtn').on('ajax:success', () => {
     $('#addModal').modal('show');
@@ -111,7 +114,7 @@ $(document).on('turbolinks:load', () => {
 
   // click edit profile button event
   $('#editProfileBtn').on('click', () => {
-    $('#editProfileBtn').hide();
+    $('#profileMenu').hide();
     $('#userInfoModal .actions').hide();
     $('#userInfoModal')
       .find('.hidden-item')

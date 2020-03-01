@@ -376,13 +376,13 @@ body {
 #userInfoModal {
   .header {
     display: grid;
-    grid-template-columns: 1fr 120px;
+    grid-template-columns: 1fr 9rem;
     align-items: center;
     .content {
       font-size: 1.6rem;
     }
-    #editProfileBtn {
-      background: #4fafd8;
+    #profileMenu {
+      justify-self: end;
     }
   }
   .image.content {

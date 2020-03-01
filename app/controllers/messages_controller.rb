@@ -10,7 +10,6 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast "chatroom_#{message.chatroom_id}",
         message: message, message_time: format_time(message.created_at), 
         sender: current_user.username
-        # byebug
       head :ok
     else 
       redirect_to chatroom_path

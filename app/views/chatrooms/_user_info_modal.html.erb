@@ -1,9 +1,14 @@
 <div class="ui small modal" id="userInfoModal">
   <div class="header">
     <div class="content">Your Profile</div>
-    <div class="ui positive right labeled icon button" id="editProfileBtn">
-      Edit
-      <i class="edit icon"></i>
+    <div class="ui icon top left pointing dropdown" id="profileMenu">
+      <i class="ellipsis vertical alternate icon"></i>
+      <div class="menu">
+        <div class="item" id="editProfileBtn"><i class="edit right floated icon"></i>
+        Edit Profile</div>
+        <div class="item"><i class="trash right floated icon"></i>
+        Delete Account</div>
+      </div>
     </div>
     <%= link_to do %>
       <div class="ui red right labeled icon button hidden-item">

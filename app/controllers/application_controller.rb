@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def format_time(created_at)
-    created_at.strftime('%b %d　%k:%M')
+    created_at.in_time_zone.strftime('%b %-d　%k:%M')
   end
 end

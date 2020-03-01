@@ -8,13 +8,12 @@ class Member < ApplicationRecord
       .preload(:user)
       .select(" members.user_id,
                 chatrooms.id,
+                chatrooms.updated_at AS room_updated_at,
                 messages.user_id AS message_user_id,
                 messages.content,
                 messages.created_at AS msg_created_at,
                 messages.image")
   }
-
-  scope :sorted, -> { order('msg_created_at DESC NULLS LAST') }
 
   scope :chatting_members, -> (user_id){ 
     where(

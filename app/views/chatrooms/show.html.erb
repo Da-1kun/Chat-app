@@ -37,7 +37,13 @@
         <%= @chatrooms.first.user.username %>
       <% end %>
     </span>
-    <i class="trash alternate large icon"></i>
+    <div class="ui icon top left pointing dropdown">
+      <i class="ellipsis vertical alternate icon"></i>
+      <div class="menu">
+        <div class="item"><i class="trash right floated icon"></i>
+        Delete Conversation</div>
+      </div>
+    </div>
   </div>
   <div class="chat-message-list">
     <%= render 'chatrooms/message', chatrooms: @chatrooms %>
