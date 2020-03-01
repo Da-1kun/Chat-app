@@ -33,6 +33,7 @@ gem 'hirb'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
+gem 'redis', '~> 3.0'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

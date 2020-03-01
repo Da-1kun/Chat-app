@@ -7,3 +7,4 @@ test:
 production:
   adapter: redis
   url: redis://redistogo:7373f0506db426bf6f912b1ba1f738cf@barb.redistogo.com:10228/
+  channel_prefix: chat-app_production
