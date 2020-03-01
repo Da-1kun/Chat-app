@@ -93,4 +93,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Configure Action Cable's Production URI
+  config.web_socket_server_url = "wss://da1kun-chat-app.herokuapp.com/cable"
+
+  # Allowed Request Origins
+  config.action_cable.allowed_request_origins = ['https://da1kun-chat-app.herokuapp.com', 'http://da1kun-chat-app.herokuapp.com']
 end
