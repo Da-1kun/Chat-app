@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def index
     @users = User.where.not(
       id: [ Member.chatting_members(current_user.id).select("user_id")]
-      )
+    ).where.not(id: current_user.id)
     @chatroom = Chatroom.new
   end
 

@@ -17,6 +17,7 @@ html {
 
 body {
   background: image-url('coffee_shop.jpg') no-repeat;
+  background-size: cover;
   display: grid;
   place-items: center center;
 }
