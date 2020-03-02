@@ -35,7 +35,7 @@ $(document).on('turbolinks:load', () => {
           } else {
             messageHTML = `<div class="message-row other-message">
                 <div class="message-content">
-                  <img src="/assets/default-profile-photo.png">
+                  <img src="/assets/default-profile-photo-05b4c332df80f3f4d05569864064136a39397701a270a67f25b3d27061cbd897.png">
                   ${image ? message_image : message_text}
                   ${message_time}
                 </div>
