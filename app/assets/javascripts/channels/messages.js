@@ -8,6 +8,10 @@ $(document).on('turbolinks:load', () => {
           const msg = data['message'];
           const userId = $('#currentUserId').val();
           const image = msg.image.url;
+          const conversation = $(
+            '.conversation-list [data-tab="chatroom_' + msg.chatroom_id + '"]'
+          );
+          const other_photo = conversation.find('img').attr('src');
           const message_text = `<div class="message-text">
                                     ${msg.content}
                                 </div>
@@ -35,8 +39,7 @@ $(document).on('turbolinks:load', () => {
           } else {
             messageHTML = `<div class="message-row other-message">
                 <div class="message-content">
-                  <img src="/assets/default-profile-photo-05b4c332df80f3f4d05569864064136a39397701a270a67f25b3d27061cbd897.png"
-                   class="other-photo">
+                  <img src="${other_photo}" class="other-photo">
                   ${image ? message_image : message_text}
                   ${message_time}
                 </div>
@@ -52,9 +55,6 @@ $(document).on('turbolinks:load', () => {
           );
 
           // display message in the conversation-list
-          const conversation = $(
-            '.conversation-list [data-tab="chatroom_' + msg.chatroom_id + '"]'
-          );
           conversation.prependTo('.conversation-list');
           conversation.find('.created-date').text(data['message_time']);
           let message = '';
