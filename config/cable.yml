@@ -5,6 +5,7 @@ test:
   adapter: async
 
 production:
-  adapter: redis
-  url: <%= Rails.application.credentials.redis_url %>
-  channel_prefix: chat-app_production
+  # adapter: redis
+  # url: <%= Rails.application.credentials.redis_url %>
+  # channel_prefix: chat-app_production
+  adapter: async
