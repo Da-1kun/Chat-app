@@ -201,6 +201,10 @@ body {
   overflow-y: scroll;
 }
 
+#deleteConversation {
+  color: red;
+}
+
 .message-row {
   display: grid;
   grid-template-columns: 70%;
@@ -387,6 +391,12 @@ body {
     #profileMenu {
       justify-self: end;
     }
+    #editProfile {
+      color: #4fafd8;
+    }
+    #deleteAccount {
+      color: red;
+    }
   }
   .image.content {
     display: grid;
@@ -433,5 +443,13 @@ body {
   }
   .ui.red.button {
     display: none;
+  }
+}
+
+// delete modal
+.ui.basic.modal {
+  .content {
+    text-align: center;
+    font-size: 1.4rem;
   }
 }

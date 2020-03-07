@@ -7,7 +7,7 @@
       <% users.each do |user| %>
         <div class="item">
           <div class="right floated content">
-            <%= form_for chatroom, url: chatroom_path do |f| %>
+            <%= form_for chatroom, url: chatrooms_path do |f| %>
               <%= f.hidden_field :user_id, value: user.id %>
               <%= button_tag type: "submit", class: "ui labeled icon button" do %>
                   <i class="comment outline icon"></i>Add

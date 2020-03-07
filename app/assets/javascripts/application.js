@@ -102,8 +102,10 @@ $(document).on('turbolinks:load', () => {
     const id = $('.conversation.item.active')
       .find('input[type="hidden"]')
       .val();
+    const url = `/chatrooms/${id}`;
     $('.chat-title span').text(name);
     $('#message_chatroom_id').val(id);
+    $('#deleteConvLink').attr('href', url);
   });
 
   // activate popup
@@ -117,7 +119,7 @@ $(document).on('turbolinks:load', () => {
   });
 
   // click edit profile button event
-  $('#editProfileBtn').on('click', () => {
+  $('#editProfile').on('click', () => {
     $('#profileMenu').hide();
     $('#userInfoModal .actions').hide();
     $('#userInfoModal')
@@ -126,5 +128,15 @@ $(document).on('turbolinks:load', () => {
     $('.ui.profile.form')
       .find('input')
       .prop('disabled', false);
+  });
+
+  // display user delete modal
+  $('#deleteAccount').on('click', () => {
+    $('#deleteUserModal').modal('show');
+  });
+
+  // display user delete modal
+  $('#deleteConversation').on('click', () => {
+    $('#deleteConversationModal').modal('show');
   });
 });

@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   post 'messages', to: 'messages#create'
   resources :users
-  resource :chatroom
+  resources :chatrooms
 end

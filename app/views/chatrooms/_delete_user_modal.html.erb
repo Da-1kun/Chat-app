@@ -1,0 +1,21 @@
+<div class="ui basic modal" id="deleteUserModal">
+  <div class="ui icon header">
+    <i class="trash icon"></i>
+    Delete Account
+  </div>
+  <div class="content">
+    <p>Are you sure you want to delete your account?</p>
+  </div>
+  <div class="actions">
+    <%= link_to do %>
+      <div class="ui red basic cancel inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+    <% end %>
+    <%= link_to user_path(user), method: :delete, class: "ui green ok inverted button" do %>
+      <i class="checkmark icon"></i>
+      Yes
+    <% end %>
+  </div>
+</div>

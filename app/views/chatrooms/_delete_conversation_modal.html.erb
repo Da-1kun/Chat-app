@@ -1,0 +1,21 @@
+<div class="ui basic modal" id="deleteConversationModal">
+  <div class="ui icon header">
+    <i class="trash icon"></i>
+    Delete Conversation
+  </div>
+  <div class="content">
+    <p>Are you sure you want to delete this conversation? All messages within this conversation will be deleted.</p>
+  </div>
+  <div class="actions">
+    <%= link_to do %>
+      <div class="ui red basic cancel inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+    <% end %>
+    <%= link_to chatroom_path(chatroom), method: :delete, id: "deleteConvLink", class: "ui green ok inverted button" do %>
+      <i class="checkmark icon"></i>
+      Yes
+    <% end %>
+  </div>
+</div>

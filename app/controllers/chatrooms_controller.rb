@@ -1,5 +1,7 @@
 class ChatroomsController < ApplicationController
-  def show
+  before_action :require_member, only: [:destroy]
+
+  def index
     @chatrooms = Member.conversations.where(
       chatroom_id: Member.where(user_id: current_user.id).select("chatroom_id")
     ).where.not(user_id: current_user.id).order(room_updated_at: "DESC")
@@ -13,11 +15,25 @@ class ChatroomsController < ApplicationController
       Member.create(chatroom_id: @chatroom.id, user_id: current_user.id)
       Member.create(chatroom_id: @chatroom.id, user_id: params[:chatroom][:user_id])
     end
-    redirect_to chatroom_path
+    redirect_to chatrooms_path
+  end
+
+  def destroy
+    chatroom = Chatroom.find(params[:id])
+    chatroom.destroy
+    redirect_to chatrooms_path
   end
 
   private
   def chatroom_params
     params.require(:chatroom).permit(:user_id)
+  end
+
+  def require_member
+    member = Member.find_by(user_id: current_user.id, chatroom_id: params[:id])
+    unless !!member
+      flash[:error] = "You can only delete your conversation"
+      redirect_to root_path
+    end
   end
 end
