@@ -398,10 +398,17 @@ body {
       color: red;
     }
   }
-  .image.content {
+  .ui.error.message {
+    margin: 0;
+  }
+  .content-area {
     display: grid;
     grid-template-columns: 15rem 1fr;
     align-items: center;
+  }
+  .image.content {
+    display: grid;
+    row-gap: 1.2rem;
     .ui.image {
       display: grid;
       grid-template-rows: 15rem 1fr;
@@ -426,7 +433,7 @@ body {
     display: none;
   }
   .description {
-    flex: 1;
+    margin-left: 1.4rem;
     .hidden-item {
       display: none;
     }
@@ -452,4 +459,19 @@ body {
     text-align: center;
     font-size: 1.4rem;
   }
+}
+
+// flash message
+.ui.message.transition {
+  position: absolute;
+  bottom: 2%;
+  left: 1%;
+  z-index: 1;
+}
+
+.sign-up-errors {
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  transform: translate(-50%, -20%);
 }

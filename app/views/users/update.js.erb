@@ -1,0 +1,5 @@
+$('#userInfoModal .error.message').remove();
+
+$('#userInfoModal form').append('<%=j render partial: 'shared/errors', locals: { obj: @user } %>');
+
+$('#userInfoModal .error.message').css('display', 'block');

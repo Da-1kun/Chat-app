@@ -1,4 +1,5 @@
 class ChatroomsController < ApplicationController
+  before_action :require_user
   before_action :require_member, only: [:destroy]
 
   def index

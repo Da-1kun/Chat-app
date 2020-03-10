@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_user, except: [:new, :create]
   before_action :set_user, only: [:update, :destroy]
   before_action :require_same_user, only: [:update, :destroy]
-
 
   def index
     @users = User.where.not(
@@ -26,7 +26,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:success] = "Your profile was successfully updated"
       redirect_to chatrooms_path
+    else
+      @user
     end
   end
 

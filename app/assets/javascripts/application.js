@@ -139,4 +139,7 @@ $(document).on('turbolinks:load', () => {
   $('#deleteConversation').on('click', () => {
     $('#deleteConversationModal').modal('show');
   });
+
+  // flash message fade out
+  $('#infoMsg').fadeOut(7500);
 });

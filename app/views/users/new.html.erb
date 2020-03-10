@@ -17,5 +17,11 @@
       </span>
     </div>
   
-    <%= f.submit "Sign up", class: "btn" %>
+    <%= f.submit "Sign up", method: :post, class: "btn" %>
+    <div class="buttom-text">
+      You have already your accoount? <%= link_to 'Log in', root_path %>
+    </div>
 <% end %>
+<div class="sign-up-errors">
+  <%= render 'shared/errors', obj: @user %>
+</div>

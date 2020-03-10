@@ -1,0 +1,12 @@
+<% if obj.errors.any? %>
+  <div class="ui error message">
+    <div class="header">
+      There were some errors with your submission
+    </div>
+    <ul class="list">
+      <% obj.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
