@@ -17,6 +17,9 @@
       <div class="conversation-message">
         <%= truncate(latest_message(chatroom), length: 30) %>
       </div>
+    <% else %>
+      <div class="created-date"></div>
+      <div class="conversation-message"></div>
     <% end %>
   </a>
 <% end %>
