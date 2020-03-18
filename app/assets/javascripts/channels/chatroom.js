@@ -69,7 +69,9 @@ $(document).on('turbolinks:load', () => {
               message = msg.content;
             }
             conversation.find('.conversation-message').text(message);
-            if (!conversation.hasClass('active')) {
+            if (conversation.hasClass('active')) {
+              conversation.find('div').removeClass('notice-color');
+            } else {
               conversation.find('div').addClass('notice-color');
             }
           }
@@ -113,7 +115,13 @@ $(document).on('turbolinks:load', () => {
             data-tab="chatroom_${data['id']}">
           </div>
         `;
-
+        if (room_count == 1) {
+          const url = `/chatrooms/${data['id']}`;
+          $('#deleteConvLink').attr('href', url);
+          $('.chat-title span').text(data['username']);
+          $('#message_chatroom_id').val(data['id']);
+          $('#conversationMenu').css('display', 'block');
+        }
         $('.conversation-list').prepend(newConversation);
         $('.chat-message-list').append(messageTab);
         subscription(room_count);

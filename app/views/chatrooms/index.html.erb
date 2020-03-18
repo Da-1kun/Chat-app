@@ -23,7 +23,9 @@
     <% end %>
   </div>
   <div class="conversation-list">
-    <%= render 'conversation_list', chatrooms: @chatrooms %>
+    <% if @chatrooms.present? %>
+       <%= render 'conversation_list', chatrooms: @chatrooms %>
+    <% end %>
   </div>
   <div class="new-message-container">
     <%= link_to users_path, class: "addModalBtn", remote: true do %>
@@ -37,7 +39,7 @@
         <%= @chatrooms.first.user.username %>
       <% end %>
     </span>
-    <div class="ui icon top left pointing dropdown">
+    <div class="ui icon top left pointing dropdown" id="conversationMenu" <% if @chatrooms.blank? %>style="display:none"<% end %>>
       <i class="ellipsis vertical alternate icon"></i>
       <div class="menu">
         <div class="item" id="deleteConversation"><i class="trash right floated icon"></i>
@@ -46,7 +48,9 @@
     </div>
   </div>
   <div class="chat-message-list">
-    <%= render 'chatrooms/message', chatrooms: @chatrooms %>
+    <% if @chatrooms.present? %>
+      <%= render 'chatrooms/message', chatrooms: @chatrooms %>
+    <% end %>
   </div>
   <%= form_for @message, url: messages_path, remote: true do |f| %>
     <label >
@@ -56,14 +60,18 @@
     <%= f.text_area :content, placeholder: "send a message", rows: "1" %>
     <% if @chatrooms.present? %>
       <%= f.hidden_field :chatroom_id, value: @chatrooms.first.id %>
+    <% else %>
+    <%= f.hidden_field :chatroom_id, value: "" %>
     <% end %>
     <%= f.submit id: "submitMessage", style: "display: none" %>
   <% end %>
 </div>
 
-<%= render 'user_info_modal', user: @user %>
-<%= render 'delete_user_modal', user: @user %>
+<%= render 'user_info_modal', user: current_user %>
+<%= render 'delete_user_modal', user: current_user %>
 <% if @chatrooms.present? %>
-<%= render 'delete_conversation_modal', chatroom: @chatrooms.first %>
+  <%= render 'delete_conversation_modal', chatroom: @chatrooms.first %>
+<% else %>
+  <%= render 'delete_conversation_modal', chatroom: 'id' %>
 <% end %>
 <div class="ui modal" id="addModal"></div>

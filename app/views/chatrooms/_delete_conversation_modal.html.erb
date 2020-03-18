@@ -13,7 +13,7 @@
         No
       </div>
     <% end %>
-    <%= link_to chatroom_path(chatroom), method: :delete, id: "deleteConvLink", class: "ui green ok inverted button" do %>
+    <%= link_to chatroom_path(chatroom != 'id' ? chatroom : 'id'), method: :delete, id: "deleteConvLink", class: "ui green ok inverted button" do %>
       <i class="checkmark icon"></i>
       Yes
     <% end %>

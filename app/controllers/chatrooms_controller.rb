@@ -7,9 +7,6 @@ class ChatroomsController < ApplicationController
       chatroom_id: Member.where(user_id: current_user.id).select("chatroom_id")
     ).where.not(user_id: current_user.id).order(room_updated_at: "DESC")
     @message = Message.new
-    byebug
-    @user = current_user
-    byebug
   end
 
   def create
