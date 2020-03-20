@@ -57,7 +57,7 @@
       <i class="images outline large icon"></i>
       <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: "imageIcon" %>
     </label>
-    <%= f.text_area :content, placeholder: "send a message", rows: "1" %>
+    <%= f.text_area :content, placeholder: "send a message", rows: 1, maxlength: 1000 %>
     <% if @chatrooms.present? %>
       <%= f.hidden_field :chatroom_id, value: @chatrooms.first.id %>
     <% else %>

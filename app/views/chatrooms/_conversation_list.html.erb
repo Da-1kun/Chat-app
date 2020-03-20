@@ -6,7 +6,7 @@
     <% else %>
       <%= image_tag 'default-profile-photo.png' %>
     <% end %>
-    <div class="title-text">
+    <div class="title-text <%= 'online-color' if chatroom.user.online? %>" id="chat-user-<%= chatroom.user.id %>">
       <%= chatroom.user.username %>
       <input type="hidden" id="chatroom_idx_<%= idx %>" value="<%= chatroom.id %>">
     </div>
