@@ -19,6 +19,19 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', () => {
+  document.body.onload = () => {
+    document.body.style.minHeight = window.innerHeight + 'px';
+  };
+
+  // リサイズを停止して500ms後にbodyサイズを設定
+  let timeoutId;
+  window.addEventListener('resize', () => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      document.body.style.minHeight = window.innerHeight + 'px';
+    }, 500);
+  });
   // visualize password
   $('#eyeSlash').on('click', () => {
     $('input[type="password"]').get(0).type = 'text';
