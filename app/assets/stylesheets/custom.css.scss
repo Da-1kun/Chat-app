@@ -57,18 +57,19 @@ body {
       / 275px 100vw;
     max-height: 800px;
     width: 100%;
-    height: auto !important;
-    min-height: 100vh;
+    min-height: 80vh;
     background: #fff;
     border-radius: 10px;
   }
-  .ui.profile.image.content.form > div {
-    grid-template-columns: 8rem 1fr;
-    .ui.image {
-      grid-template-rows: 8rem 1fr;
-      #photoArea {
-        width: 8rem;
-        height: 8rem;
+  #userInfoModal {
+    .ui.profile.image.content.form > div {
+      grid-template-columns: 8rem 1fr;
+      .ui.image {
+        grid-template-rows: 8rem 1fr;
+        #photoArea {
+          width: 8rem;
+          height: 8rem;
+        }
       }
     }
   }
