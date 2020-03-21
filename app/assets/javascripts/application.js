@@ -95,13 +95,34 @@ $(document).on('turbolinks:load', () => {
   });
 
   // set chatroom info(username, id)
-  $('a.conversation.item').on('click', () => {
+  $('.conversation-list').on('click', 'a.conversation.item', e => {
+    const notice = $(e.target).closest('a');
+    notice.find('div').removeClass('notice-color');
+    const unread = $('.conversation-message.notice-color').length;
+    if (unread) {
+      $('.msg-count').text(unread);
+    } else {
+      $('.msg-count').text('');
+    }
+    let id = '';
+    if (notice.hasClass('active')) {
+      id = $('.conversation.item.active')
+        .find('input[type="hidden"]')
+        .val();
+    } else {
+      $('a.conversation.item.active').removeClass('active');
+      notice.addClass('active');
+      id = $('.conversation.item.active')
+        .find('input[type="hidden"]')
+        .val();
+      $('.ui.tab.active').removeClass('active');
+      $('.chat-message-list [data-tab="chatroom_' + id + '"]').addClass(
+        'active'
+      );
+    }
     const name = $('.conversation.item.active')
       .children('.title-text')
       .text();
-    const id = $('.conversation.item.active')
-      .find('input[type="hidden"]')
-      .val();
     const url = `/chatrooms/${id}`;
     $('.chat-title span').text(name);
     $('#message_chatroom_id').val(id);
@@ -117,10 +138,7 @@ $(document).on('turbolinks:load', () => {
   $('.info.icon').popup();
 
   // remove notice-color
-  $('.conversation-list a').on('click', e => {
-    const notice = $(e.target).closest('a');
-    notice.find('div').removeClass('notice-color');
-  });
+  $('.conversation-list a').on('click', e => {});
 
   // click edit profile button event
   $('#editProfile').on('click', () => {

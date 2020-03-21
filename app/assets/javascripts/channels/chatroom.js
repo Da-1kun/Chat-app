@@ -78,6 +78,12 @@ $(document).on('turbolinks:load', () => {
                 conversation.find('div').removeClass('notice-color');
               } else {
                 conversation.find('div').addClass('notice-color');
+                const unread = $('.conversation-message.notice-color').length;
+                if (unread) {
+                  $('.msg-count').text(unread);
+                } else {
+                  $('.msg-count').text('');
+                }
               }
             }
           }
@@ -111,7 +117,9 @@ $(document).on('turbolinks:load', () => {
               room_count == 1 ? 'active' : ''
             }" data-tab="chatroom_${data['id']}">
               <img src="${imageUrl}">
-              <div class="title-text notice-color">
+              <div class="title-text notice-color ${
+                data['online'] ? 'online-color' : ''
+              }" id="chat-user-${data['user_id']}">
                 ${data['username']}
                 <input type="hidden" id="chatroom_idx_${room_count}"
                   value="${data['id']}">
