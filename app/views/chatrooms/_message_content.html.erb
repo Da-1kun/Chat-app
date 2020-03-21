@@ -4,7 +4,7 @@
   </div>
 <% else %>
   <div class="message-text">
-    <%= message.content %>
+    <%= raw Rinku.auto_link(h(message.content), :all,'target="_blank"') %>
   </div>
 <% end %>
 <div class="message-time">

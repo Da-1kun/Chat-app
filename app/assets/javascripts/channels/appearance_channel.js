@@ -3,7 +3,6 @@ $(document).on('turbolinks:load', () => {
     const height = window.innerHeight + 'px';
     $('.chat-container').css('height', height);
 
-    // リサイズを停止して500ms後にbodyサイズを設定
     let timeoutId;
     window.addEventListener('resize', () => {
       clearTimeout(timeoutId);

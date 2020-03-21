@@ -34,6 +34,9 @@
     <div class="new-message">New Conversation</div>
   </div>
   <div class="chat-title">
+    <i class="angle left icon" id="leftIcon">
+        <div class="msg-count"></div>
+      </i>
     <span>
       <% if @chatrooms.present? %>
         <%= @chatrooms.first.user.username %>

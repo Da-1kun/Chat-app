@@ -106,6 +106,9 @@ $(document).on('turbolinks:load', () => {
     $('.chat-title span').text(name);
     $('#message_chatroom_id').val(id);
     $('#deleteConvLink').attr('href', url);
+    if (window.innerWidth <= 800) {
+      $('.chat-container').scrollLeft(9999);
+    }
   });
 
   // activate popup
@@ -142,4 +145,9 @@ $(document).on('turbolinks:load', () => {
 
   // flash message fade out
   $('#infoMsg').fadeOut(7500);
+
+  // scroll left action
+  $('#leftIcon').on('click', () => {
+    $('.chat-container').scrollLeft(0);
+  });
 });
