@@ -59,6 +59,7 @@ body {
     background: #fff;
     border-radius: 10px;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .user-info-container {
