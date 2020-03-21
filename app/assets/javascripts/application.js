@@ -107,7 +107,8 @@ $(document).on('turbolinks:load', () => {
     $('#message_chatroom_id').val(id);
     $('#deleteConvLink').attr('href', url);
     if (window.innerWidth <= 800) {
-      $('.chat-container').scrollLeft(9999);
+      const listPosition = document.getElementById('chat-container');
+      listPosition.scrollLeft = 9999;
     }
   });
 
@@ -148,6 +149,7 @@ $(document).on('turbolinks:load', () => {
 
   // scroll left action
   $('#leftIcon').on('click', () => {
-    $('.chat-container').scrollLeft(0);
+    const listPosition = document.getElementById('chat-container');
+    listPosition.scrollLeft = 0;
   });
 });
