@@ -1,1 +1,3 @@
-$('#addModal').html('<%=j render partial: 'add_modal', locals: {users: @users, chatroom: @chatroom} %>')
+$('#addModal').html('<%=j render partial: 'add_modal', locals: {users: @users, chatroom: @chatroom} %>');
+
+$('#addModal').modal('show');

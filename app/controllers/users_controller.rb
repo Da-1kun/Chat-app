@@ -27,7 +27,6 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = "Your profile was successfully updated"
-      redirect_to chatrooms_path
     else
       @user
     end

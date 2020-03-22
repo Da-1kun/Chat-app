@@ -100,7 +100,7 @@ $(document).on('turbolinks:load', () => {
       return str.replace(regexp_url, regexp_makeLink);
     }
 
-    App.messages = App.cable.subscriptions.create('RoomChannel', {
+    App.room = App.cable.subscriptions.create('RoomChannel', {
       received: data => {
         if (userId == data['invited_user_id']) {
           const photo = data['user_photo'];

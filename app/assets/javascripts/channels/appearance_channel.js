@@ -12,7 +12,7 @@ $(document).on('turbolinks:load', () => {
       }, 500);
     });
 
-    App.messages = App.cable.subscriptions.create('AppearanceChannel', {
+    App.appearance = App.cable.subscriptions.create('AppearanceChannel', {
       received: data => {
         const selector = `#chat-user-${data['user_id']}`;
         if ($(selector).length) {

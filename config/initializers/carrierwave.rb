@@ -7,6 +7,7 @@ CarrierWave.configure do |config|
     :region => 'ap-northeast-1'
   }
   config.fog_directory = Rails.application.credentials.aws[:s3_bucket]
-  config.fog_public = false
+  config.fog_public = true
   config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }
+  config.asset_host = Rails.application.credentials.aws[:asset_host]
 end

@@ -10,12 +10,10 @@
         Delete Account</div>
       </div>
     </div>
-    <%= link_to do %>
-      <div class="ui red right labeled icon button hidden-item">
-        Cancel
-        <i class="window close icon"></i>
-      </div>
-    <% end %>
+    <div class="ui red right labeled icon button hidden-item" id="cancelBtn">
+      Cancel
+      <i class="window close icon"></i>
+    </div>
   </div>
   <%= form_for user, html: { class: "ui profile image content form "}, remote: true do |f| %>
     <div class="content-area">

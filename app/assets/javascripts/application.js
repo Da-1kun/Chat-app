@@ -19,7 +19,14 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', () => {
-  // visualize password
+  /**
+   * Set flash message fade out time
+   */
+  $('#infoMsg').fadeOut(7500);
+
+  /**
+   * Visualize password
+   */
   $('#eyeSlash').on('click', () => {
     $('input[type="password"]').get(0).type = 'text';
     $('#eyeSlash').css('display', 'none');
@@ -31,22 +38,24 @@ $(document).on('turbolinks:load', () => {
     $('#eye').css('display', 'none');
   });
 
-  // display userInfoModal
-  $('.info.circle.icon').on('click', () => {
-    $('#userInfoModal')
-      .modal({ closable: false })
-      .modal('show');
-  });
-
+  /**
+   * Chatroom Initial Settings
+   */
   // activate dropdown
   $('.ui.dropdown').dropdown({ showOnFocus: false });
-
-  // display add modal
-  $('.addModalBtn').on('ajax:success', () => {
-    $('#addModal').modal('show');
+  // activate popup
+  $('.sign.out.alternate.icon').popup();
+  $('.info.icon').popup();
+  // activate conversation-list
+  const activeTag = $('.conversation.item.active').data('tab');
+  $('[data-tab="' + activeTag + '"]').addClass('active');
+  $('.conversation-list .item').tab({
+    context: $('.chat-message-list')
   });
 
-  // textarea size ajustment
+  /**
+   * Textarea size ajustment
+   */
   $('#new_message textarea').on('keyup', () => {
     const target = $('#new_message textarea');
     const maxLineHeight = 10;
@@ -65,7 +74,9 @@ $(document).on('turbolinks:load', () => {
     }
   });
 
-  // sending message action
+  /**
+   * Sending message action
+   */
   $('#new_message').on('keydown', e => {
     e.target.value = e.target.value.trimStart();
     if (e.key == 'Enter' && e.target.value == '') {
@@ -78,7 +89,9 @@ $(document).on('turbolinks:load', () => {
     }
   });
 
-  // sending image action
+  /**
+   * Sending image action
+   */
   $('#imageIcon').on('change', e => {
     const txt_message = $('message_content').val();
     $('message_content').val('');
@@ -87,31 +100,31 @@ $(document).on('turbolinks:load', () => {
     $('message_content').val(txt_message);
   });
 
-  // activate conversation-list
-  const activeTag = $('.conversation.item.active').data('tab');
-  $('[data-tab="' + activeTag + '"]').addClass('active');
-  $('.conversation-list .item').tab({
-    context: $('.chat-message-list')
-  });
-
-  // set chatroom info(username, id)
+  /**
+   * Select Conversation Events
+   */
   $('.conversation-list').on('click', 'a.conversation.item', e => {
-    const notice = $(e.target).closest('a');
-    notice.find('div').removeClass('notice-color');
+    // Remove notice-color
+    const conversation = $(e.target).closest('a');
+    conversation.find('div').removeClass('notice-color');
+
+    // Update unread message count
     const unread = $('.conversation-message.notice-color').length;
     if (unread) {
       $('.msg-count').text(unread);
     } else {
       $('.msg-count').text('');
     }
+
+    // Update active conversation
     let id = '';
-    if (notice.hasClass('active')) {
+    if (conversation.hasClass('active')) {
       id = $('.conversation.item.active')
         .find('input[type="hidden"]')
         .val();
     } else {
       $('a.conversation.item.active').removeClass('active');
-      notice.addClass('active');
+      conversation.addClass('active');
       id = $('.conversation.item.active')
         .find('input[type="hidden"]')
         .val();
@@ -120,6 +133,13 @@ $(document).on('turbolinks:load', () => {
         'active'
       );
     }
+
+    /**
+     * Switch conversation
+     * username
+     * chatroom_id
+     * delete conversation link
+     */
     const name = $('.conversation.item.active')
       .children('.title-text')
       .text();
@@ -127,20 +147,39 @@ $(document).on('turbolinks:load', () => {
     $('.chat-title span').text(name);
     $('#message_chatroom_id').val(id);
     $('#deleteConvLink').attr('href', url);
+
+    /**
+     * Mobile(Screen width <= 800)
+     * Swich screen
+     */
     if (window.innerWidth <= 800) {
       const listPosition = document.getElementById('chat-container');
       listPosition.scrollLeft = 9999;
     }
   });
 
-  // activate popup
-  $('.sign.out.alternate.icon').popup();
-  $('.info.icon').popup();
+  /**
+   * Show Modal Events
+   */
+  // User Info modal
+  $('.info.circle.icon').on('click', () => {
+    $('#userInfoModal')
+      .modal({ closable: false })
+      .modal('show');
+  });
+  // Delete User modal
+  $('#deleteAccount').on('click', () => {
+    $('#deleteUserModal').modal('show');
+  });
+  // Delete Conversation modal
+  $('#deleteConversation').on('click', () => {
+    $('#deleteConversationModal').modal('show');
+  });
 
-  // remove notice-color
-  $('.conversation-list a').on('click', e => {});
-
-  // click edit profile button event
+  /**
+   * User Info modal
+   * Edit Profile Event
+   */
   $('#editProfile').on('click', () => {
     $('#profileMenu').hide();
     $('#userInfoModal .actions').hide();
@@ -152,20 +191,23 @@ $(document).on('turbolinks:load', () => {
       .prop('disabled', false);
   });
 
-  // display user delete modal
-  $('#deleteAccount').on('click', () => {
-    $('#deleteUserModal').modal('show');
+  /**
+   * Reload
+   * User Info modal
+   */
+  // After update
+  $('.ui.profile.form').on('ajax:success', () => {
+    location.reload();
+  });
+  // Cancel update
+  $('#cancelBtn').on('click', () => {
+    location.reload();
   });
 
-  // display user delete modal
-  $('#deleteConversation').on('click', () => {
-    $('#deleteConversationModal').modal('show');
-  });
-
-  // flash message fade out
-  $('#infoMsg').fadeOut(7500);
-
-  // scroll left action
+  /**
+   * Mobile(Screen width <= 800)
+   * Angle Left Icon click Event
+   */
   $('#leftIcon').on('click', () => {
     const listPosition = document.getElementById('chat-container');
     listPosition.scrollLeft = 0;
