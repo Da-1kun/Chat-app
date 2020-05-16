@@ -16,6 +16,6 @@ class AppearanceChannel < ApplicationCable::Channel
 
   private
   def redis
-    $redis
+    Redis.new
   end
 end
