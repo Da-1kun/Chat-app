@@ -14,8 +14,8 @@ class AppearanceChannel < ApplicationCable::Channel
                                  online: false
   end
 
-  # private
-  # def redis
-  #   Redis.new(url: ENV["REDIS_URL"])
-  # end
+  private
+  def redis
+    $redis
+  end
 end
